@@ -32,12 +32,9 @@
 //! not slow the reader down, the channel's capacity must be large enough to hold more messages than may arrive during
 //! that time.**
 
-use {
-	async_channel::{Receiver, RecvError, Sender, TryRecvError},
-	futures::prelude::*,
-};
+use {async_channel::Receiver, futures::prelude::*};
 
-pub use async_channel;
+pub use async_channel::{self, RecvError, Sender, TryRecvError};
 
 const DEFAULT_RELAXATION: std::time::Duration = std::time::Duration::from_millis(100);
 
