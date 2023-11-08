@@ -92,8 +92,9 @@ impl<T> RelaxedReceiver<T> {
 	/// Receives a message from the channel
 	///
 	/// If the channel is still empty, this method waits until there is a message.
-	/// It may however take up to 100ms for it to wake up after a message is made available by a `Sender`.
-	/// (This guarantees that the task sending messages is not slowed down by the need to wake up this receiving task.)
+	/// It may however take up to [`relax_for`](RelaxedReceiver::relaxing_for) for it to wake up after a message is made
+	/// available by a [`Sender`]. (This guarantees that the task sending messages is not slowed down by the need to
+	/// often wake up this receiving task.)
 	///
 	/// If the channel is closed, this method receives a message or returns an error if there are no more messages.
 	pub async fn recv(&self) -> Result<T, RecvError> {
