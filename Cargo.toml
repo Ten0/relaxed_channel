@@ -1,0 +1,13 @@
+[package]
+	authors = ["Thomas BESSOU <thomas.bessou@hotmail.fr>"]
+	description = "Wrapper around async-channel, more performant on heavy pipelines"
+	edition = "2021"
+	license = "LGPL-3.0-only"
+	name = "relaxed_channel"
+	repository = "https://github.com/Ten0/relaxed_channel"
+	version = "0.1.0"
+
+[dependencies]
+	async-channel = "2"
+	futures = "0.3"
+	tokio = { version = "1", features = ["time"] }
