@@ -110,7 +110,7 @@ impl<T> RelaxedReceiver<T> {
 		}
 	}
 
-	/// Turns this receiver into a Stream
+	/// Obtains a Stream from this receiver
 	///
 	/// The returned stream is relaxed in the same way as [`RelaxedReceiver::recv`].
 	pub fn stream<'a>(&'a self) -> impl Stream<Item = T> + 'a {
