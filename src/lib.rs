@@ -63,6 +63,8 @@ pub fn unbounded_relaxing_for<T>(relax_for: std::time::Duration) -> (Sender<T>, 
 /// Wrapper around [`async_channel::Receiver`] that sleeps for a bit when receiving from an empty channel
 ///
 /// ...so as to not impact the performance of the task sending messages.
+///
+/// See [crate documentation](crate) for more details.
 #[derive(Debug)]
 pub struct RelaxedReceiver<T> {
 	receiver: Receiver<T>,
