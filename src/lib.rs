@@ -42,8 +42,8 @@
 //! The [`unbounded`] function creates an unbounded channel relaxed on the receiver end only, because the sender can't
 //! be blocked by the receiver if the channel is unbounded.
 //!
-//! You can construct both [`RelaxedSender`] and [`RelaxedReceiver`] separately if you need to customize both their
-//! relaxations more precisely.
+//! You can construct both [`RelaxedSender`] and [`RelaxedReceiver`] separately if you need to customize their
+//! relaxations individually.
 
 mod receiver;
 mod sender;
@@ -58,6 +58,9 @@ pub fn bounded<T>(cap: usize) -> (RelaxedSender<T>, RelaxedReceiver<T>) {
 }
 
 /// Construct an unbounded channel with 100ms relaxation
+///
+/// Channel is relaxed on the receiver end only, because the sender can't ever be blocked by the receiver if the channel
+/// is unbounded.
 pub fn unbounded<T>() -> (Sender<T>, RelaxedReceiver<T>) {
 	unbounded_relaxing_for(DEFAULT_RELAXATION)
 }
