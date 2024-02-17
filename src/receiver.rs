@@ -1,6 +1,8 @@
 use futures::prelude::*;
 
-pub use async_channel::{self, Receiver, RecvError, TryRecvError};
+pub use async_channel::{self, Receiver, RecvError};
+
+use async_channel::TryRecvError;
 
 /// Wrapper around [`async_channel::Receiver`] that sleeps for a bit when receiving from an empty channel
 ///

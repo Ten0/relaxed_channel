@@ -1,4 +1,6 @@
-pub use async_channel::{self, SendError, Sender, TrySendError};
+pub use async_channel::{self, SendError, Sender};
+
+use async_channel::TrySendError;
 
 /// Wrapper around [`async_channel::Sender`] that sleeps for a bit when sending to a full channel
 ///
