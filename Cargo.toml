@@ -5,7 +5,7 @@
 	license = "LGPL-3.0-only"
 	name = "relaxed_channel"
 	repository = "https://github.com/Ten0/relaxed_channel"
-	version = "0.1.0"
+	version = "0.2.0"
 
 [dependencies]
 	async-channel = "2"
