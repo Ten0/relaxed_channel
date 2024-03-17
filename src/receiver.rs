@@ -101,4 +101,9 @@ impl<T> RelaxedReceiver<T> {
 	pub fn inner(&self) -> &Receiver<T> {
 		&self.receiver
 	}
+
+	/// Returns the relaxation duration
+	pub fn relaxes_for(&self) -> std::time::Duration {
+		self.relax_for
+	}
 }
