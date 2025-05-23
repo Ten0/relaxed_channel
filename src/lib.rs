@@ -20,7 +20,7 @@
 //! When reading a message and encountering an empty channel:
 //!
 //! - Channel is empty => this means we are processing faster than the writers can produce data.
-//! - Let's not cost time to the reader, and instead of marking ourselves for wake up, just sleep for e.g. 100ms.
+//! - Let's not cost time to the writer, and instead of marking ourselves for wake up, just sleep for e.g. 100ms.
 //! - After 100ms, do a regular [`Receiver::recv()`] to check for a message, and only now mark ourselves for wake up if
 //!   there is still no message available.
 //!
@@ -65,7 +65,7 @@ pub fn unbounded<T>() -> (Sender<T>, RelaxedReceiver<T>) {
 	unbounded_relaxing_for(DEFAULT_RELAXATION)
 }
 
-/// Construct a channel with the given capacity, and 100ms relaxation
+/// Construct a channel with the given capacity, and a chosen relaxation
 pub fn bounded_relaxing_for<T>(cap: usize, relax_for: std::time::Duration) -> (RelaxedSender<T>, RelaxedReceiver<T>) {
 	let (s, r) = async_channel::bounded(cap);
 	(
@@ -74,7 +74,7 @@ pub fn bounded_relaxing_for<T>(cap: usize, relax_for: std::time::Duration) -> (R
 	)
 }
 
-/// Construct an unbounded channel with 100ms relaxation
+/// Construct an unbounded channel with a chosen relaxation
 pub fn unbounded_relaxing_for<T>(relax_for: std::time::Duration) -> (Sender<T>, RelaxedReceiver<T>) {
 	let (s, r) = async_channel::unbounded();
 	(s, RelaxedReceiver::relaxing_for(r, relax_for))
